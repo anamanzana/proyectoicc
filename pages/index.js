@@ -2,7 +2,8 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useState } from "react";
 import axios from "axios";
-import router from "koa-router";
+import koaRouter from "koa-router";
+import koa from "koa";
 
 export default function Home() {
   const [country, setCountry] = useState("Chile");
@@ -10,7 +11,8 @@ export default function Home() {
   const [countryInfo, setCountryInfo] = useState(null);
   const [btnText1, setBtnText1] = useState("Obten continente");
   const [btnText2, setBtnText] = useState("Obten país");
-  const Router = router;
+  const router = new koaRouter();
+  const app = new koa();
   const continentes = ["America", "Asia", "Africa", "Europe", "Oceania"];
   /**
    *
@@ -34,6 +36,9 @@ export default function Home() {
     setBtnText1("Obten info continente");
   };
 
+  router.get('koa-example', '/', (ctx) => {
+    ctx.body = 'Hello World';
+  });
   const getCountryInfo = async (e) => {
     e.preventDefault();
 
