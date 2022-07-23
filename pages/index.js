@@ -31,6 +31,7 @@ export default function Home() {
 
     setBtnText1("Obten info continente");
   };
+  
 
   const getCountryInfo = async (e) => {
     e.preventDefault();
@@ -81,6 +82,13 @@ export default function Home() {
           </button>
         </form>
       </div>
+      {continentInfo && (
+      <tr>
+                <td className="border-danger border px-4 py-4">Continente</td>
+                <td className="border-danger border px-4 py-4">
+                  {continentInfo.continent}
+                </td>
+              </tr>)}
       <div className="flex flex-col mt-10 justify-end h-2 md:h-6"></div>
       <div className="flex flex-col justify-between items-center w-full md:items-center">
         <form className="flex w-full justify-center md:flex-col md:w-5/6 ">
@@ -99,13 +107,7 @@ export default function Home() {
           </button>
         </form>
       </div>
-      {continentInfo && (
-      <tr>
-                <td className="border-danger border px-4 py-4">Continente</td>
-                <td className="border-danger border px-4 py-4">
-                  {countryInfo.continent}
-                </td>
-              </tr>)}
+      
       {countryInfo && (
         <div className="flex flex-col text-raleway mt-12 w-3/6 h-4/5 md:w-5/6 md:h-full md:mb-12">
           <table className="text-primary border-danger border md:text-sm md:mx-2">
