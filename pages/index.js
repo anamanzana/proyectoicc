@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import styles from '../styles/Home.module.css';
 import { useState } from "react";
 import axios from "axios";
 import router from "koa-router";
@@ -65,7 +64,7 @@ export default function Home() {
       <div className="d1">
         <form className="d2">
         <script src="../pages/api/info2.js"></script>
-              <select multiple class="form-control" id="listboxc">
+              <select multiple className="form-control" id="listboxc">
                 <option value="1">America</option>
                 <option value="2">Asia</option>
                 <option value="3">Africa</option>
