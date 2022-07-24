@@ -1,3 +1,7 @@
 [submodule "common-libs"]
 	path = common-libs
 	url = https://github.com/ViewSonicCloud/backend-libs.git
+
+[submodule "node-js-getting-started"] 
+  path = node-js-getting-started
+  url = https://github.com/heroku/node-js-getting-started.git
