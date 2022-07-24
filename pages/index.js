@@ -2,13 +2,13 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useState } from "react";
 import axios from "axios";
-
 export default function Home() {
   const [country, setCountry] = useState("Chile");
   const [continentInfo, setContinentInfo] = useState(null);
   const [countryInfo, setCountryInfo] = useState(null);
   const [btnText1, setBtnText1] = useState("Obten continente");
   const [btnText2, setBtnText] = useState("Obten país");
+  const [btnText3, setBtnText3] = useState("Haz un comentario");
   const continentes = ["America", "Asia", "Africa", "Europe", "Oceania"];
   /**
    *
@@ -21,7 +21,7 @@ export default function Home() {
     try {
       setBtnText1("Carga continente");
       const res = await axios.get(`/api/info2`, {
-        params2: { continent},
+        params2: {country},
       });
 
       getContinentInfo(res.data[0]);
@@ -30,6 +30,23 @@ export default function Home() {
     }
 
     setBtnText1("Obten info continente");
+  };
+
+  const getCommentInfo = async (e) => {
+    e.preventDefault();
+
+    try {
+      setBtnText3("Haz un comentario");
+      const res = await axios.get(`api/info.js`, {
+        params2: { continent},
+      });
+
+      getContinentInfo(res.data[0]);
+    } catch (err) {
+      console.log(err);
+    }
+
+    setBtnText3("Haz un comentario");
   };
   
 
@@ -63,7 +80,7 @@ export default function Home() {
       <div className="d1">
         <form className="d2">
         <script src="../pages/api/info2.js"></script>
-              <select multiple className="form-control" id="listboxc">
+              <select multiple className="form-control" id="listboxc" size="1">
                 <option value="1">America</option>
                 <option value="2">Asia</option>
                 <option value="3">Africa</option>
@@ -80,6 +97,21 @@ export default function Home() {
           >
             {btnText1}
           </button>
+          {countryInfo && (
+            <div className="flex flex-col text-raleway mt-12 w-3/6 h-4/5 md:w-5/6 md:h-full md:mb-12">
+              <table className="text-primary border-danger border md:text-sm md:mx-2">
+                <tbody>
+                  <tr>
+                    <td className="border-danger border px-4 py-4">Nombre</td>
+                    <td className="border-danger border px-4 py-4">
+                      {countryInfo.name}
+                    </td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+          )}
         </form>
       </div>
       {continentInfo && (
@@ -155,8 +187,20 @@ export default function Home() {
         </div>
       )}
       <div className="flex flex-col mt-10 justify-end h-36 md:h-24">
-        <script src="/blog/app.js" async defer></script>
+        
       </div>
+      
+      <button
+            className="boton_continente border border-danger text-secondary font-bold font-raleway ml-4 w-52 px-12 py-2 rounded-sm bg-danger text-primary transition duration-300 hover:bg-bc hover:text-primary md:ml-0 md:mt-4"
+            onClick={getCommentInfo}
+          >
+            {btnText3}
+          </button>
+
+        
+          <div className="flex flex-col mt-10 justify-end h-36 md:h-24">
+        
+        </div>
     </div>
   );
 }
