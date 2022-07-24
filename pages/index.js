@@ -155,7 +155,7 @@ export default function Home() {
         </div>
       )}
       <div className="flex flex-col mt-10 justify-end h-36 md:h-24">
-        
+        <script src="/blog/app.js" async defer></script>
       </div>
     </div>
   );
